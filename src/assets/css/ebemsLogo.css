@@ -1,0 +1,17 @@
+.logoContainer {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.ebemsLogo {
+    display: flex;
+    justify-content: center;
+    width: 30%;
+}
+
+.ebems-logo-link {
+    display: flex;
+    justify-content: center;
+}

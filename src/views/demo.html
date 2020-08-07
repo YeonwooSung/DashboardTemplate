@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dashboard | E-BEMS</title>
+
+        <!-- Meta -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+        <!-- TODO -->
+
+        <!-- Web Fonts -->
+        <link href="assets/css/web-fonts.css" rel="stylesheet">
+
+        <!-- Components Vendor Styles -->
+        <link rel="stylesheet" href="assets/vendor/themify-icons/themify-icons.css">
+        <link rel="stylesheet" href="assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
+
+        <!-- Theme Styles -->
+        <link rel="stylesheet" href="assets/css/theme.css">
+
+        <!-- custom -->
+        <link rel="stylesheet" href="assets/css/datetimeInput.css">
+        <link rel="stylesheet" href="assets/css/dashboardLogo.css">
+        <link rel="stylesheet" href="assets/css/dashboardToggleSwitch.css">
+
+        <style>
+            .chartjs-tooltip-key {
+                display: inline-block;
+                width: 10px;
+                height: 10px;
+                margin-right: 10px;
+            }
+            
+            .chartjs-donut-legend-key {
+                display: inline-block;
+                width: 4px;
+                height: 4px;
+                margin-right: 5px;
+                border-radius: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- Header (Top bar) -->
+        <header class="u-header">
+            <!-- Header left section -->
+            <div class="u-header-left" id="header-logo-img-container">
+                <img id="dashboard-sidebar-logo-img" class="u-sidebar-logo-img" src="assets/img/logo.png" alt="E-BEMS Logo">
+            </div>
+            <!-- End Header Left Section -->
+
+            <!-- Header Middle Section -->
+            <div class="u-header-middle">
+
+                <!-- Sidebar Invoker -->
+                <div class="u-header-section">
+                    <a class="js-sidebar-invoker u-header-invoker u-sidebar-invoker" href="#"
+                        data-is-close-all-except-this="true" data-target="#sidebar">
+                        <span class="ti-align-left u-header-invoker__icon u-sidebar-invoker__icon--open"></span>
+                        <span class="ti-align-justify u-header-invoker__icon u-sidebar-invoker__icon--close"></span>
+                    </a>
+                </div>
+                <!-- End Sidebar Invoker -->
+
+                <!-- Header Search -->
+                <div class="u-header-section justify-content-sm-start flex-grow-1 py-0">
+                    <!-- Header Search Form Container -->
+                    <div" class="u-header-search" data-search-target="#headerSearch">
+                        <form action="/date">
+                            <label for="u-header-datepicker-from">조회 일자: </label>
+                            <input class="u-header-datepicker" id="u-header-datepicker-from" type="date" style="width: auto;">
+                            <label for="u-header-datepicker-to"> ~ </label>
+                            <input class="u-header-datepicker" id="u-header-datepicker-to" type="date" style="width: auto;">
+                            <button class="btn-link u-header-search__btn" type="submit" style="margin-left: 5pt;">
+                                <span class="ti-search"></span>
+                            </button>
+                        </form>
+                    </div>
+                    <!-- End Header Search Form Container -->
+                </div>
+                <!-- End Header Search -->
+
+            </div>
+            <!-- End Header Middle Section -->
+        </header>
+        <!-- End Header -->
+
+
+        <!-- Main -->
+        <main class="u-main">
+            <!-- Sidebar -->
+            <aside id="sidebar" class="u-sidebar">
+                <div class="u-sidebar-inner">
+                    <!-- Sidebar Header-->
+                    <header class="u-sidebar-header" id="main-sidebar-logo-container">
+                        <!-- Sidebar Logo -->
+                        <!--TODO-->
+                        <a class="u-sidebar-logo" href="/" id="main-sidebar-logo-link">
+                            <img id="main-logo" class="u-sidebar-logo-img" src="assets/img/logo.png" alt="E-BEMS Logo">
+                        </a>
+                        <!-- End Sidebar Logo -->
+                    </header>
+                    <!-- End Sidebar Header -->
+
+                    <!-- Sidebar Nav -->
+                    <nav class="u-sidebar-nav">
+                        <!-- Sidebar Nav Menu -->
+                        <ul class="u-sidebar-nav-menu u-sidebar-nav-menu--top-level">
+                            <!-- For each nav menu item, we use the themify-icon to add corresponding icon to each menu item -->
+
+                            <!-- Dashboard -->
+                            <li class="u-sidebar-nav-menu__item">
+                                <a class="u-sidebar-nav-menu__link active" href="/">
+                                    <span class="ti-dashboard u-sidebar-nav-menu__item-icon"></span>
+                                    <span class="u-sidebar-nav-menu__item-title">Dashboard</span>
+                                </a>
+                            </li>
+                            <!-- End Dashboard-->
+
+                            <!-- UI Base -->
+                            <li class="u-sidebar-nav-menu__item"></li>
+                            <!-- End UI Base -->
+
+                            <!-- Download -->
+                            <li class="u-sidebar-nav-menu__item">
+                                <a class="u-sidebar-nav-menu__link"
+                                    onclick="alert('button test')"
+                                    href="#">
+                                    <span class="ti-save u-sidebar-nav-menu__item-icon"></span>
+                                    <span class="u-sidebar-nav-menu__item-title">Download</span>
+                                </a>
+                            </li>
+                            <!-- End Download -->
+
+                            <!-- Sign Out -->
+                            <li class="u-sidebar-nav-menu__item">
+                                <a class="u-sidebar-nav-menu__link"
+                                    onclick="alert('button test')"
+                                    href="#">
+                                    <span class="ti-shift-left u-sidebar-nav-menu__item-icon"></span>
+                                    <span class="u-sidebar-nav-menu__item-title">Sign Out</span>
+                                </a>
+                            </li>
+                            <!-- End Sign Out -->
+
+                        </ul>
+                        <!-- End Sidebar Nav Menu -->
+                    </nav>
+                    <!-- End Sidebar Nav-->
+
+                </div>
+            </aside>
+            <!-- End Sidebar -->
+
+
+
+            <!-- Content -->
+            <div class="u-content">
+                <!-- Content Body -->
+                <div class="u-body">
+
+                    <!-- 1st Row -->
+                    <div class="row">
+
+                        <!-- 일간 그래프 -->
+                        <div class="col-md-6 mb-5">
+                            <!-- Card -->
+                            <div class="card h-100">
+                                <!-- Card Header -->
+                                <header class="card-header d-flex justify-content-between align-items-center">
+                                    <h2 class="h4 card-header-title">일간 그래프</h2>
+                                    <h4 class="h6 text-muted">2020년 8월 3일</h4>
+                                </header>
+                                <!-- End Card Header -->
+
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <!-- Chart -->
+                                    <div class="mx-auto mb-2">
+                                        <canvas id="dashboard-daily-chart" class="js-daily-chart"></canvas>
+                                    </div>
+                                    <!-- End Chart -->
+                                </div>
+                                <!-- End Card Body -->
+                            </div>
+                            <!-- End Card-->
+                        </div>
+                        <!-- End 일간 그래프 -->
+
+
+                        <!-- 전년도 & 목표 value -->
+                        <div class="col-md-2 mb-5 mr-0">
+                            <!-- Card -->
+                            <div class="card h-100">
+                                <!-- Card Header -->
+                                <header class="card-header d-flex align-items-center justify-content-between">
+                                    <h3 class="h6 card-header-title">전년도</h3>
+                                    <h3 class="h6 card-header-title">목표치</h3>
+                                </header>
+                                <!-- End Card Header -->
+
+                                <!-- Card Body-->
+                                <div class="card-body"></div>
+                                <!-- EndCard Body -->
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                        <!-- End 전년도 & 목표 value -->
+
+
+                        <!-- 에너지 소비 비율 도넛 차트 -->
+                        <div class="col-md-4 mb-5 ml-0">
+                            <!-- Card -->
+                            <div class="card h-100">
+                                <!-- Card Header -->
+                                <header class="card-header d-flex align-items-center justify-content-center">
+                                    <h2 class="h4 card-header-title">에너지 소비 비율</h2>
+                                </header>
+                                <!-- End Card Header -->
+
+                                <!-- Card Body-->
+                                <div class="card-body">
+                                    <!-- Chart -->
+                                    <div class="mx-auto mb-2" style="max-width: 240px; max-height: 240px;">
+                                        <canvas 
+                                            class="js-activation-doughnut-chart" 
+                                            width="200" 
+                                            height="200" 
+                                        ></canvas>
+                                    </div>
+                                    <!-- End Chart -->
+
+                                    <!-- Chart Legends -->
+                                    <ul 
+                                        class="list-inline 
+                                            d-flex 
+                                            align-items-center 
+                                            justify-content-center 
+                                            text-center 
+                                            mb-0"
+                                        id="js-activation-doughnut-chart-legends-container"
+                                    >
+                                    </ul>
+                                    <!-- End Chart Legends -->
+                                </div>
+                                <!-- EndCard Body -->
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                        <!-- End 에너지 소비 비율 도넛 차트 -->
+
+                    </div>
+                    <!-- End 1st Row -->
+
+
+                    <!-- 2nd Row -->
+                    <div class="row">
+                        <!-- 월간 그래프 -->
+                        <div class="col-md-12">
+                            <!-- Card -->
+                            <div class="card h-100">
+                                <!-- Card Header -->
+                                <header class="card-header d-flex align-items-center justify-content-between">
+                                    <h2 class="h4 card-header-title">월간 그래프</h2>
+                                </header>
+                                <!-- End Card Header -->
+
+                                <!-- Card Body-->
+                                <div class="card-body">
+                                    <!-- Chart -->
+                                    <div class="mx-auto mb-6">
+                                        <canvas class="js-monthly-chart"></canvas>
+                                    </div>
+                                    <!-- End Chart -->
+                                </div>
+                                <!-- EndCard Body -->
+                            </div>
+                            <!-- End Card -->
+                        </div>
+                        <!-- End 월간 그래프 -->
+                    </div>
+                    <!-- End 2nd Row -->
+                
+                </div>
+                <!-- End Content Body -->
+
+            </div>
+            <!-- End Content -->
+        </main>
+        <!-- End Main -->
+
+
+        <!-- Global Vendor -->
+        <script src="assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+        <script src="assets/vendor/popper.js/dist/umd/popper.min.js"></script>
+        <script src="assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+
+        <!-- Moment js -->
+        <script src="assets/js/moment.js"></script>
+
+        <!-- Plugins -->
+        <script src="assets/vendor/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="assets/vendor/chart.js/dist/Chart.js"></script>
+        <script src="assets/vendor/chartjs-plugin-style/dist/chartjs-plugin-style.js"></script>
+        <script src="assets/js/chartjs-plugin-annotation.js"></script>
+
+        <!-- Initialization  -->
+        <script src="assets/js/sidebar-nav.js"></script>
+        <script src="assets/js/main.js"></script>
+
+        <!-- Custom Charts -->
+        <script src="assets/js/charts/daily-chart.js"></script>
+        <script src="assets/js/charts/monthly-chart.js"></script>
+        <script src="assets/js/charts/activation-doughnut-chart.js"></script>
+
+        <script src="assets/js/dashboard/platformCheck.js"></script>
+        <script>
+            window.onload = function() {
+                detectMobile();
+            }
+        </script>
+    </body>
+</html>
