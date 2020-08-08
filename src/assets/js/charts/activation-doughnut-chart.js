@@ -2,7 +2,7 @@ var activation_donut_chart;
 
 Chart.pluginService.register({
     beforeDraw: function (chart) {
-        if (chart.config.options.elements.center) {
+        if (chart.config.options.elements.center && chart.config.options.elements.type == 'activationDonutChart') {
             activation_donut_chart = chart;
 
             drawCenterText(chart);
@@ -112,7 +112,8 @@ Chart.pluginService.register({
                     color: '#36A2EB', //Default black
                     fontStyle: 'Helvetica', //Default Arial
                     fontStyle: 'Helvetica', //Default Arial
-                }
+                },
+                type: 'activationDonutChart'
             }
         };
 
