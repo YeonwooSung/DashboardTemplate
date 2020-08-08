@@ -16,7 +16,6 @@
     });
 })(jQuery);
 
-var horizontalBarChart;
 var data1;
 var data2;
 var data3;
@@ -46,8 +45,8 @@ for (var i = 0, max = radios.length; i < max; i++) {
     radios[i].onclick = function () {
         var index = parseInt(this.value);
         console.log(dataList[index]);
-        horizontalBarChart.data = dataList[index];
-        horizontalBarChart.update();
+        window.horizontalBarChart.data = dataList[index];
+        window.horizontalBarChart.update();
     }
 }
 
@@ -123,8 +122,4 @@ function setData() {
     };
 
     dataList = [data1, data2, data3, data4, data5];
-}
-
-function setHorizontalBarChart(chart) {
-    horizontalBarChart = chart;
 }
