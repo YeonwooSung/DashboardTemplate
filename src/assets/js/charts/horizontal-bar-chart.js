@@ -16,7 +16,7 @@
     });
 })(jQuery);
 
-
+var horizontalBarChart;
 var data1;
 var data2;
 var data3;
@@ -37,6 +37,17 @@ var horizontal_bar_chart_options = {
         rectangle: {
             borderWidth: 2
         }
+    }
+}
+
+var radios = document.forms['horizontal-chart-radio-button-form'].elements['chk_info'];
+var dataList = [];
+for (var i = 0, max = radios.length; i < max; i++) {
+    radios[i].onclick = function () {
+        var index = parseInt(this.value);
+        console.log(dataList[index]);
+        horizontalBarChart.data = dataList[index];
+        horizontalBarChart.update();
     }
 }
 
@@ -61,10 +72,10 @@ function setData() {
             data: [
                 37, 20, 33, 49, 50, 21, 34, 40
             ],
-            borderColor: 'lightgreen',
-            backgroundColor: 'lightgreen',
+            borderColor: 'lightblue',
+            backgroundColor: 'lightblue',
 
-            pointBackgroundColor: 'lightgreen',
+            pointBackgroundColor: 'lightblue',
             pointRadius: 1,
         }]
     };
@@ -75,10 +86,10 @@ function setData() {
             data: [
                 37, 20, 33, 49, 50, 21, 34, 40
             ],
-            borderColor: 'lightgreen',
-            backgroundColor: 'lightgreen',
+            borderColor: 'green',
+            backgroundColor: 'green',
 
-            pointBackgroundColor: 'lightgreen',
+            pointBackgroundColor: 'green',
             pointRadius: 1,
         }]
     };
@@ -89,10 +100,10 @@ function setData() {
             data: [
                 37, 20, 33, 49, 50, 21, 34, 40
             ],
-            borderColor: 'lightgreen',
-            backgroundColor: 'lightgreen',
+            borderColor: 'blue',
+            backgroundColor: 'blue',
 
-            pointBackgroundColor: 'lightgreen',
+            pointBackgroundColor: 'blue',
             pointRadius: 1,
         }]
     };
@@ -101,13 +112,19 @@ function setData() {
         labels: ['기기 1', '기기 2', '기기 3', '기기 4', '기기 5', '기기 6', '기기 7', '기기 8', '기기 9'],
         datasets: [{
             data: [
-                37, 20, 33, 49, 50, 21, 34, 40
+                37, 20, 33, 49, 50, 21, 34, 40, 28
             ],
-            borderColor: 'lightgreen',
-            backgroundColor: 'lightgreen',
+            borderColor: 'darkblue',
+            backgroundColor: 'darkblue',
 
-            pointBackgroundColor: 'lightgreen',
+            pointBackgroundColor: 'darkblue',
             pointRadius: 1,
         }]
     };
+
+    dataList = [data1, data2, data3, data4, data5];
+}
+
+function setHorizontalBarChart(chart) {
+    horizontalBarChart = chart;
 }
