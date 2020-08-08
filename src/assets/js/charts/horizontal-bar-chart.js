@@ -36,6 +36,80 @@ var horizontal_bar_chart_options = {
         rectangle: {
             borderWidth: 2
         }
+    },
+    tooltips: {
+        enabled: false,
+        position: 'nearest',
+        custom: function (tooltipModel) {
+            // Tooltip Element
+            var tooltipEl = document.getElementById('chartjs-tooltip');
+
+            // Create element on first render
+            if (!tooltipEl) {
+                tooltipEl = document.createElement('div');
+                tooltipEl.id = 'chartjs-tooltip';
+                tooltipEl.classList.add('u-chartjs-tooltip-wrap');
+                tooltipEl.innerHTML = '<div class="u-chartjs-tooltip"></div>';
+                document.body.appendChild(tooltipEl);
+            }
+
+            // Hide if no tooltip
+            if (tooltipModel.opacity == 0) {
+                tooltipEl.style.opacity = 0;
+                return;
+            }
+
+            // Set caret Position
+            tooltipEl.classList.remove('above', 'below', 'no-transform');
+            if (tooltipModel.yAlign) {
+                tooltipEl.classList.add(tooltipModel.yAlign);
+            } else {
+                tooltipEl.classList.add('no-transform');
+            }
+
+            function getBody(bodyItem) {
+                return bodyItem.lines;
+            }
+
+            // Set Text
+            if (tooltipModel.body) {
+                var titleLines = tooltipModel.title || [];
+                var bodyLines = tooltipModel.body.map(getBody);
+
+                var innerHtml = '<header class="u-chartjs-tooltip-header">';
+
+                titleLines.forEach(function (title) {
+                    innerHtml += title;
+                });
+
+                innerHtml += '</header><div class="u-chartjs-tooltip-body"><table><tbody>';
+
+                bodyLines.forEach(function (body, i) {
+                    var colors = tooltipModel.labelColors[i];
+
+                    body += 'W';
+                    body = body.replace(':', '').trim()
+
+                    var style = 'background: ' + colors;
+                    style += ('; border-color:' + colors);
+                    style += '; border-width: 2px';
+
+                    innerHtml += ('<tr><td>' + body + '</td></tr>');
+                });
+
+                var tooltipRoot = tooltipEl.querySelector('.u-chartjs-tooltip');
+                tooltipRoot.innerHTML = innerHtml;
+            }
+
+            // `this` will be the overall tooltip
+            var position = this._chart.canvas.getBoundingClientRect();
+
+            // Display, position, and set styles for font
+            tooltipEl.style.opacity = 1;
+            tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX - (tooltipEl.offsetWidth / 2) - 3 + 'px';
+            tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - tooltipEl.offsetHeight - 25 + 'px';
+            tooltipEl.style.pointerEvents = 'none';
+        }
     }
 }
 
