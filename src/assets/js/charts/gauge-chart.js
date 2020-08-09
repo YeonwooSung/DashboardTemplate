@@ -68,8 +68,8 @@ Chart.pluginService.register({
         };
         var options = {
             legend: false,
-            circumference: 1 * Math.PI,
-            rotation: 1 * Math.PI,
+            circumference: 1.5 * Math.PI,
+            rotation: 0.75 * Math.PI,
             cutoutPercentage: 80,
             scales: {
                 xAxes: [{
@@ -136,11 +136,6 @@ Chart.pluginService.register({
                             style += '; border-width: 2px';
 
                             var span = '<span class="chartjs-tooltip-key" style="' + style + `"></span>`;
-
-                            // redraw the center text
-                            //redrawCenterText(body);
-                            var newVal = (Math.round(Math.random() * (50 - 10) + 10)) + '%';
-                            redrawCenterText(newVal);
 
                             innerHtml += ('<tr><td>' + span + body + '</td></tr>');
                         });
@@ -216,7 +211,7 @@ function drawCenterText_gauge(chart) {
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
     var centerX = ((chart.chartArea.left + chart.chartArea.right) / 2);
-    var centerY = ((chart.chartArea.top + chart.chartArea.bottom) * 0.7);
+    var centerY = ((chart.chartArea.top + chart.chartArea.bottom) * 0.6);
     ctx.font = fontSizeToUse + "px " + fontStyle;
     ctx.fillStyle = color;
 
@@ -226,11 +221,4 @@ function drawCenterText_gauge(chart) {
 
     //Draw text in center
     ctx.fillText(txt, centerX, centerY);
-}
-
-function redrawCenterText(text) {
-    if (gaugeChart == undefined) return;
-
-    gaugeChart.config.options.elements.center.text = text;
-    drawCenterText(gaugeChart);
 }
