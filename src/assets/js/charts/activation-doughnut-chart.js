@@ -114,7 +114,12 @@ Chart.pluginService.register({
                     fontStyle: 'Helvetica', //Default Arial
                 },
                 type: 'activationDonutChart'
-            }
+            },
+            plugins: {
+                labels: {
+                    render: (args) => ''
+                }
+            },
         };
 
         $(chartClass).each(function (i, el) {

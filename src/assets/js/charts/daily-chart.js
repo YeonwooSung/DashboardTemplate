@@ -328,7 +328,12 @@
                     tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY - tooltipEl.offsetHeight - 25 + 'px';
                     tooltipEl.style.pointerEvents = 'none';
                 }
-            }
+            },
+            plugins: {
+                labels: {
+                    render: (args) => ''
+                }
+            },
         };
 
         $('.js-daily-chart').each(function (i, el) {
