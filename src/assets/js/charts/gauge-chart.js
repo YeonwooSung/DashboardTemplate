@@ -1,10 +1,6 @@
-var gaugeChart;
-
 Chart.pluginService.register({
     beforeDraw: function (chart) {
         if (chart.config.options.elements.center && chart.config.options.elements.type == 'gaugeChart') {
-            gaugeChart = chart;
-
             drawCenterText_gauge(chart);
         }
     }
@@ -131,9 +127,14 @@ Chart.pluginService.register({
                             style += ('; border-color:' + colors);
                             style += '; border-width: 2px';
 
-                            var span = '<span class="chartjs-tooltip-key" style="' + style + `"></span>`;
+                            body = body + ''
 
-                            innerHtml += ('<tr><td>' + span + body + '</td></tr>');
+                            var timeVal = body.split(":")[0].trim()
+                            var timeStr = timeVal + "시 : ";
+                            var valStr = getPercentageValue(timeVal);
+
+                            //innerHtml += ('<tr><td>' + span + body + '</td></tr>');
+                            innerHtml += ('<tr><td>' + timeStr + valStr + '</td></tr>');
                         });
 
                         var tooltipRoot = tooltipEl.querySelector('.u-chartjs-tooltip');
@@ -175,6 +176,28 @@ Chart.pluginService.register({
     });
 })(jQuery)
 
+
+var percentageData = {
+    '8': 10, 
+    '9': 18, 
+    '10': 25, 
+    '11': 30, 
+    '12': 35, 
+    '13': 40, 
+    '14': 45, 
+    '15': undefined,
+    '16': undefined,
+    '17': undefined,
+    '18': undefined,
+    '19': undefined,
+    '20': undefined,
+    '21': undefined,
+};
+
+function getPercentageValue(hour) {
+    var percentageVal = percentageData[hour];
+    return (percentageVal ? percentageVal + '%' : '없음');
+}
 
 function drawCenterText_gauge(chart) {
     //Get ctx
