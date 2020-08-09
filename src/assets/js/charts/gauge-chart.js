@@ -15,20 +15,20 @@ Chart.pluginService.register({
         var chart;
         var data = {
             labels: [
-                new Date('2020-08-03 8:00'),
-                new Date('2020-08-03 9:00'),
-                new Date('2020-08-03 10:00'),
-                new Date('2020-08-03 11:00'),
-                new Date('2020-08-03 12:00'),
-                new Date('2020-08-03 13:00'),
-                new Date('2020-08-03 14:00'),
-                new Date('2020-08-03 15:00'),
-                new Date('2020-08-03 16:00'),
-                new Date('2020-08-03 17:00'),
-                new Date('2020-08-03 18:00'),
-                new Date('2020-08-03 19:00'),
-                new Date('2020-08-03 20:00'),
-                new Date('2020-08-03 21:00'),
+                new Date('2020-08-03 8:00').getHours(),
+                new Date('2020-08-03 9:00').getHours(),
+                new Date('2020-08-03 10:00').getHours(),
+                new Date('2020-08-03 11:00').getHours(),
+                new Date('2020-08-03 12:00').getHours(),
+                new Date('2020-08-03 13:00').getHours(),
+                new Date('2020-08-03 14:00').getHours(),
+                new Date('2020-08-03 15:00').getHours(),
+                new Date('2020-08-03 16:00').getHours(),
+                new Date('2020-08-03 17:00').getHours(),
+                new Date('2020-08-03 18:00').getHours(),
+                new Date('2020-08-03 19:00').getHours(),
+                new Date('2020-08-03 20:00').getHours(),
+                new Date('2020-08-03 21:00').getHours(),
             ],
             datasets: [{
                 label: '전력 데이터',
@@ -40,13 +40,13 @@ Chart.pluginService.register({
                     'green',
                     'green',
                     'lightgreen',
-                    '#f3f5fb',
-                    '#f3f5fb',
-                    '#f3f5fb',
-                    '#f3f5fb',
-                    '#f3f5fb',
-                    '#f3f5fb',
-                    '#f3f5fb',
+                    'lightgray',
+                    'lightgray',
+                    'lightgray',
+                    'lightgray',
+                    'lightgray',
+                    'lightgray',
+                    'lightgray',
                 ],
                 data: [
                     5,
@@ -66,21 +66,17 @@ Chart.pluginService.register({
                 ]
             }],
         };
+
         var options = {
             legend: false,
             circumference: 1.5 * Math.PI,
             rotation: 0.75 * Math.PI,
             cutoutPercentage: 80,
-            scales: {
-                xAxes: [{
-                    type: 'time',
-                    gridLines: {
-                        display: false, // make x axis invisible
-                    },
-                    ticks: {
-                        display: false
-                    }
-                }],
+            plugins: {
+                labels: {
+                    position: 'outside',
+                    render: (args) => `${args.label}`
+                }
             },
             tooltips: {
                 enabled: false,
