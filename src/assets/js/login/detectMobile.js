@@ -14,7 +14,7 @@ function detectMobile() {
     });
 
     if (!isMobile) {
-        changePaddingSize('logoContainer', '40px', '80px');
+        changePaddingSize('logoContainer', '10px', '20px');
     }
 
     return isMobile;
