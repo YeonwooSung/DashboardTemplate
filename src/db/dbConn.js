@@ -6,6 +6,8 @@ var SALT_FACTOR = 10;
 var db;
 
 function connectDB() {
+    var db_info = require('../../private/mongodb.json');
+
     db = mongoose.connection;
     db.on('error', console.error);
     db.once('open', function () {
@@ -13,9 +15,7 @@ function connectDB() {
         console.log("Connected to mongod server");
     });
 
-    var url = 'mongodb://localhost/mongodb_tutorial';
-    mongoose.connect(url);
-    //mongoose.connect('mongodb://username:password@host:port/database?options...');
+    mongoose.connect(db_info.url);
 }
 
 var User = require('./schema/user');
@@ -43,7 +43,7 @@ exports.saveNewUser = (res, id, password, region) => {
 }
 
 exports.authenticate = (user_id, password, fn) => {
-    db.User.findOne ({id: user_id}, function(err, user) {
+    User.findOne({id: user_id}, function(err, user) {
         if (err) return fn(err);
         if (!user) return fn(new Error('cannot find user'));
 
