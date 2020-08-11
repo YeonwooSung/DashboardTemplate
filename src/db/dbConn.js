@@ -34,12 +34,11 @@ exports.saveNewUser = (res, id, password, region) => {
     user.save((err) => {
         if (err) {
             console.error(err);
-            res.send({ result: 0 });
+            res.redirect('/signup');
             return;
         }
 
-        //TODO
-        res.send({ result: 1 });
+        res.redirect('login');
     });
 }
 

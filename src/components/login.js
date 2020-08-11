@@ -3,7 +3,7 @@
 var express = require('express');
 var router = express.Router();
 
-var authenticate = require('dbConn').authenticate;
+var authenticate = require('../db/dbConn').authenticate;
 
 router.get('/', (req, res) => {
     res.render('login.html');

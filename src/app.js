@@ -37,6 +37,7 @@ app.get('/demo', (req, res) => {
 })
 
 app.use('/login', require('./components/login'));
+app.use('/signup', require('./components/signup'));
 
 //TODO
 //--------------------------------------------------------------------------------
