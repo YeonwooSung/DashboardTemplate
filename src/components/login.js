@@ -17,7 +17,7 @@ router.post('/', (req, res) => {
             var err_msg = err.message;
             console.log(err_msg);
 
-            res.redirect('login');
+            return res.redirect('login');
         }
 
         if (user) {
@@ -31,8 +31,6 @@ router.post('/', (req, res) => {
             res.redirect('login');
         }
     });
-
-    res.redirect('/');
 });
 
 module.exports = router;

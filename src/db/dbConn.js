@@ -1,7 +1,4 @@
 var mongoose = require('mongoose');
-var bcrypt = require("bcrypt-nodejs");
-
-var SALT_FACTOR = 10;
 
 var db;
 
@@ -17,6 +14,8 @@ function connectDB() {
 
     mongoose.connect(db_info.url);
 }
+
+connectDB();
 
 var User = require('./schema/user');
 var Data = require('./schema/data');
