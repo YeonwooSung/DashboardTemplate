@@ -14,4 +14,5 @@
 .ebems-logo-link {
     display: flex;
     justify-content: center;
+    height: 12vh;
 }
