@@ -3,6 +3,8 @@
 var express = require('express');
 var router = express.Router();
 
+var authenticate = require('dbConn').authenticate;
+
 router.get('/', (req, res) => {
     res.render('login.html');
 });
@@ -10,7 +12,25 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     var {id, password} = req.body;
 
-    //TODO
+    authenticate(id, password, function (err, user) {
+        if (err) {
+            var err_msg = err.message;
+            console.log(err_msg);
+
+            res.redirect('login');
+        }
+
+        if (user) {
+            // req.session.regenerate(function () {
+            //     req.session.user = user;
+            //     res.redirect('/callbackAuth');
+            // });
+
+            res.redirect('/');
+        } else {
+            res.redirect('login');
+        }
+    });
 
     res.redirect('/');
 });
