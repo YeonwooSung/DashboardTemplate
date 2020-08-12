@@ -3,7 +3,7 @@ const app = require('./src/app');
 const http = require('http');
 const httpPort = 8080;
 
-var debug = require('debug')('GroomWe:server');
+var debug = require('debug')('EBEMS:server');
 
 app.set('port', httpPort);
 
